@@ -1,0 +1,8 @@
+class TestClass {
+  main():int{
+    val a:int = 1
+    val b:int = 2
+    print a+b
+    a+b
+  }
+}
