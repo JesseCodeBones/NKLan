@@ -4,13 +4,27 @@
 #include <filesystem>
 #include <string>
 namespace nk {
+
+enum Token{
+  Class,
+  OpenBrace,
+  CloseBrace,
+  StringLiteral,
+  IntegerLiteral,
+  OpenParentheses,
+  CloseParentheses,
+  Colon,
+  Val,
+  Equal
+};
+
 /// @brief Lexer for NK language
 class Lexer {
 public:
-  ///@brief constructor for Lexer
+  /// @brief constructor for Lexer
   ///
-  ///@param _source script source of NK
-  ///@param _path path of source code
+  /// @param _source script source of NK
+  /// @param _path path of source code
   Lexer(std::string _source, std::filesystem::path _path)
       : source(_source), path(_path), sourceView(source) {
   }
@@ -18,6 +32,8 @@ public:
   void parseFile(){
     
   }
+
+  void next(){}
 
 private:
   std::string source;          ///< original text source code
