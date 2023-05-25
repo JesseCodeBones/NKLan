@@ -11,12 +11,18 @@ public:
   ///
   ///@param _source script source of NK
   ///@param _path path of source code
-  Lexer(std::string _source, std::filesystem::path _path) : source(_source), path(_path) {
+  Lexer(std::string _source, std::filesystem::path _path)
+      : source(_source), path(_path), sourceView(source) {
+  }
+
+  void parseFile(){
+    
   }
 
 private:
-  std::string source;         ///< original text source code
-  std::filesystem::path path; ///< path of source code
+  std::string source;          ///< original text source code
+  std::filesystem::path path;  ///< path of source code
+  std::string_view sourceView; ///< string view of source code string
 };
 } // namespace nk
 
