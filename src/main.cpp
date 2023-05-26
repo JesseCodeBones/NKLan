@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include "EnvironmentConfig.hpp"
 #include "Lexer.hpp"
 
 using namespace nk;
@@ -11,7 +12,9 @@ int main(int argc, char **argv) {
     std::cerr << "Please provide nk scripts\n";
     return 1;
   }
-  std::cout << argv[1] << std::endl;
+  EnvironmentConfiguration::getInstance().init();
+  NK_TRACE(argv[1])
+  NK_TRACE('\n')
   std::filesystem::path inputPath = std::filesystem::path(argv[1]);
   if (std::filesystem::exists(inputPath)) {
     std::ifstream inputStream{inputPath};
@@ -19,6 +22,7 @@ int main(int argc, char **argv) {
                        std::istreambuf_iterator<char>());
     inputStream.close();
     Lexer lexer(std::move(source), std::move(inputPath));
+    lexer.parse();
   } else {
     std::cerr << "file not exists\n";
     return 1;
