@@ -1,14 +1,14 @@
 #ifndef __NK_ENVIRONMENT_CONFIGURATION__
 #define __NK_ENVIRONMENT_CONFIGURATION__
 #include <cstdlib>
-#define NK_DEBUG_WITH_TYPE(X)                                                                      \
+#define NK_DEBUG_STD(X)                                                                      \
   do {                                                                                             \
     if (nk::EnvironmentConfiguration::getInstance().isDebug()) {                                   \
       X;                                                                                           \
     }                                                                                              \
   } while (false)
 
-#define NK_TRACE(MSG) NK_DEBUG_WITH_TYPE(std::cout << (MSG));
+#define NK_TRACE(MSG) NK_DEBUG_STD(std::cout << (MSG));
 namespace nk {
 
 class EnvironmentConfiguration {
