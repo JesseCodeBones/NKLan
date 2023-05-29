@@ -31,6 +31,7 @@ enum TokenType {
   Identifier,
   InValid
 };
+///< token strings, can print its meaning
 const static std::array tokenStrings = {"Class",
                                         "OpenBrace",
                                         "CloseBrace",
@@ -50,10 +51,13 @@ const static std::array tokenStrings = {"Class",
                                         "InValid"};
 /// @brief token with range
 struct Token {
-  TokenType type;
-  std::pair<size_t, size_t> range;
+
+  TokenType type;                  ///< type
+  std::pair<size_t, size_t> range; ///< range
+  /// @brief print token content
   friend std::ostream &operator<<(std::ostream &out, const Token &instance) noexcept {
-    out << tokenStrings[instance.type - 1U] << "{" << instance.range.first << ":" << instance.range.second << "}\n";
+    out << tokenStrings[instance.type - 1U] << "{" << instance.range.first << ":"
+        << instance.range.second << "}\n";
     return out;
   }
 };
@@ -79,6 +83,9 @@ public:
   /// @throw runtime_exception with there is unrecognized character
   Token next();
 
+  /// @brief get tokens
+  ///
+  /// @return token vector
   const std::vector<Token> &getTokens() const noexcept {
     return tokens;
   }

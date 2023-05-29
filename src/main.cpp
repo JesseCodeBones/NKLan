@@ -4,6 +4,7 @@
 #include <sstream>
 #include "EnvironmentConfig.hpp"
 #include "Lexer.hpp"
+#include "Parser.hpp"
 
 using namespace nk;
 
@@ -23,6 +24,8 @@ int main(int argc, char **argv) {
     inputStream.close();
     Lexer lexer(std::move(source), std::move(inputPath));
     lexer.parse();
+    Parser parser(source, lexer.getTokens());
+    parser.parse();
   } else {
     std::cerr << "file not exists\n";
     return 1;
