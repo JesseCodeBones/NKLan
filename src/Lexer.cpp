@@ -7,7 +7,7 @@
 #include "EnvironmentConfig.hpp"
 using namespace nk;
 
-void Lexer::parse() {
+void Lexer::tokenizer() {
   while (true) {
     Token token = next();
     if (token.type == TokenType::EndOfFile) {

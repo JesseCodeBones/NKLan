@@ -75,7 +75,7 @@ public:
 
   /// @brief parse and generate token list
   /// @throw runtime_exception
-  void parse();
+  void tokenizer();
 
   /// @brief retrieve next token
   ///

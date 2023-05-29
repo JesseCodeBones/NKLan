@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
                        std::istreambuf_iterator<char>());
     inputStream.close();
     Lexer lexer(std::move(source), std::move(inputPath));
-    lexer.parse();
+    lexer.tokenizer();
     Parser parser(source, lexer.getTokens());
     parser.parse();
   } else {
