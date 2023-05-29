@@ -1,9 +1,20 @@
 #ifndef __NK_PARSER_HPP__
 #define __NK_PARSER_HPP__
+#include <cstdint>
 #include <string>
+#include <string_view>
 #include <vector>
 #include "Lexer.hpp"
 namespace nk {
+/// @brief AST node kind class
+enum class ASTTreeNodeKind : uint32_t { FILE_NODE, CLASS_NODE, INVALID_NODE };
+/// @brief AST node class
+class ASTTreeNode {
+public:
+  std::string_view code;
+  ASTTreeNodeKind kind = ASTTreeNodeKind::INVALID_NODE;
+  std::vector<ASTTreeNode> nodes;
+};
 
 /// @brief Parser class translate tokens to AST (Abstract Syntax Tree)
 class Parser {
@@ -23,9 +34,17 @@ public:
   ///
   void parse();
 
+  ///
+  /// @brief get ast tree
+  ///
+  const ASTTreeNode &getASTTree() const noexcept {
+    return ast;
+  }
+
 private:
-  const std::string &source;
-  const std::vector<Token> &tokens;
+  const std::string &source;        ///< source code
+  const std::vector<Token> &tokens; ///< tokens from Lexer
+  ASTTreeNode ast;                  ///< ast tree
 };
 
 } // namespace nk
