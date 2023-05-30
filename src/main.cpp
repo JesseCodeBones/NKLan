@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
     std::string source((std::istreambuf_iterator<char>(inputStream)),
                        std::istreambuf_iterator<char>());
     inputStream.close();
-    Lexer lexer(std::move(source), std::move(inputPath));
+    Lexer lexer(source, std::move(inputPath));
     lexer.tokenizer();
     Parser parser(source, lexer.getTokens());
     parser.parse();
